@@ -1,0 +1,17 @@
+﻿@model  List<AdminServicios.DAL.CAT_RESIDENCIAL>
+@{
+    var grid = new WebGrid(Model, canPage: false, canSort: false);
+}
+
+    @grid.GetHtml(
+                htmlAttributes: new { id = "tbl_razon_social" },
+                tableStyle: "display dataTable striped",
+                columns: grid.Columns(
+                    grid.Column("RESIDENCIAL", "Residencial"),
+                    grid.Column("ABREVIATURA", "Abreviatura"),
+                    grid.Column(header: "Estatus", format: (item) => new HtmlString(item.Activo ? "Activo" : "Inactivo")),
+                    grid.Column(header: "Acciones", format: (item) => new HtmlString(
+                       "<a id=\"" + item.ID_RESIDENCIAL + "\" onclick=\"editarRazonSocail(this)\" class=\"btn-floating waves-effect waves-light btn-small teal darken-1 tooltipped\" data-position=\"top\"><i class=\"material-icons\">edit</i></a>"  
+
+                    ))
+                ))

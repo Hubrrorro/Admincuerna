@@ -1,0 +1,68 @@
+﻿@model  AdminServicios.DAL.CAT_RESIDENCIAL
+@{
+    ViewBag.Title = "Residencial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (ViewBag.Editar == 1)
+{
+    <h2>Modificar registro residencial</h2>
+}
+else
+{
+    <h2>Agregar registro residencial</h2>
+}
+<input type="hidden" value="@Model.ID_RESIDENCIAL" />
+<div class="row">
+    <div class="col-sm-6 col-sm-12">
+        <div class="form-group">
+            <label for="txtresidencial">Residencial:</label>
+            <input type="text" class="form-control" value="@Model.RESIDENCIAL" id="txtresidencial">
+        </div>
+    </div>
+    <div class="col-sm-4 col-sm-6">
+        <div class="form-group">
+            <label for="txtabreviatura">Abreviatura:</label>
+            <input type="text" class="form-control" value="@Model.ABREVIATURA" id="txtabreviatura">
+        </div>
+    </div>
+    @if (ViewBag.Editar == 1)
+    {
+        <div class="col-sm-2 col-sm-6">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" value="@Model.ACTIVO">Estatus
+            </label>
+        </div>
+    }
+</div>
+<div class="row">
+    <div class="col-sm-6 col-md-6">
+        <a href="@Url.Action("Index")" class="btn btn-danger">Cancelar</a>
+    </div>
+    @if (ViewBag.Editar == 1)
+    {
+        <div class="col-sm-6 col-md-6 right">
+            <button id="btnGuardar" type="button" class="btn btn-primary">Guardar</button>
+        </div>
+    }
+    else
+    {
+        <div class="col-sm-6 col-md-6 right">
+            <button id="btnActualizar" type="button" class="btn btn-primary">Actualizar</button>
+        </div>
+    }
+</div>
+
+@section scripts{
+    <script>
+        $('#btnActualizar').on('click', function () {
+
+        });
+        $('#btnGuardar').on('click', function () {
+
+        });
+        function FncObtenerModelo() {
+            var modelo = new Object();
+            modelo.
+        }
+    </script>
+}
