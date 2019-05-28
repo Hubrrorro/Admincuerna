@@ -22,7 +22,7 @@ namespace AdminServicios.DAL
     
         public int ID_RESIDENCIAL { get; set; }
         public string RESIDENCIAL { get; set; }
-        public int ACTIVO { get; set; }
+        public bool ACTIVO { get; set; }
         public string ABREVIATURA { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

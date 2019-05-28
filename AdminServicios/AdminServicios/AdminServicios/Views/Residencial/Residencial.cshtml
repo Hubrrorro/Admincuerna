@@ -11,25 +11,25 @@ else
 {
     <h2>Agregar registro residencial</h2>
 }
-<input type="hidden" value="@Model.ID_RESIDENCIAL" />
+<input type="hidden" id="hiddenIdRec" value="@Model.ID_RESIDENCIAL" />
 <div class="row">
     <div class="col-sm-6 col-sm-12">
         <div class="form-group">
             <label for="txtresidencial">Residencial:</label>
-            <input type="text" class="form-control" value="@Model.RESIDENCIAL" id="txtresidencial">
+            <input type="text" class="form-control" maxlength="200" value="@Model.RESIDENCIAL" id="txtresidencial">
         </div>
     </div>
     <div class="col-sm-4 col-sm-6">
         <div class="form-group">
             <label for="txtabreviatura">Abreviatura:</label>
-            <input type="text" class="form-control" value="@Model.ABREVIATURA" id="txtabreviatura">
+            <input type="text" class="form-control" maxlength="5" value="@Model.ABREVIATURA" id="txtabreviatura">
         </div>
     </div>
     @if (ViewBag.Editar == 1)
     {
         <div class="col-sm-2 col-sm-6">
             <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" value="@Model.ACTIVO">Estatus
+                <input id="chkActivo" type="checkbox" class="form-check-input">Estatus
             </label>
         </div>
     }
@@ -41,28 +41,56 @@ else
     @if (ViewBag.Editar == 1)
     {
         <div class="col-sm-6 col-md-6 right">
-            <button id="btnGuardar" type="button" class="btn btn-primary">Guardar</button>
+            <button id="btnActualizar" type="button" class="btn btn-primary">Actualizar</button>
         </div>
     }
     else
     {
         <div class="col-sm-6 col-md-6 right">
-            <button id="btnActualizar" type="button" class="btn btn-primary">Actualizar</button>
+            <button id="btnGuardar" type="button" class="btn btn-primary">Guardar</button>
         </div>
     }
 </div>
 
 @section scripts{
     <script>
+        function FncLimpiar() {
+            $('#txtresidencial').val("");
+            $('#txtabreviatura').val("");
+        }
+        var editar = @ViewBag.Editar;
+        $(function () {
+            if (editar == 1) {
+                if ("@Model.ACTIVO" == "True")
+                    document.getElementById("chkActivo").checked = true;
+                else
+                    document.getElementById("chkActivo").checked = false;
+            }
+        });
         $('#btnActualizar').on('click', function () {
-
+            var residencialModel = FncObtenerModelo();
+            ExecuteAjaxModelMensaje(residencialModel,"@Url.Action("Edit")", "POST", false);
         });
         $('#btnGuardar').on('click', function () {
-
+            var residencialModel = FncObtenerModelo();
+            ExecuteAjaxModelMensaje(residencialModel, "@Url.Action("Create")", "POST", false);
+            FncLimpiar();
         });
         function FncObtenerModelo() {
-            var modelo = new Object();
-            modelo.
-        }
+            var residencialModel = new Object();
+            residencialModel.ABREVIATURA = $('#txtabreviatura').val();
+            if (editar == 1)
+            {
+                residencialModel.ID_RESIDENCIAL = $('#hiddenIdRec').val();
+                residencialModel.ACTIVO = document.getElementById("chkActivo").checked;
+            }
+            else
+            {
+                residencialModel.ID_RESIDENCIAL = 0;
+                residencialModel.ACTIVO = 1;
+            }
+            residencialModel.RESIDENCIAL = $('#txtresidencial').val();
+            return residencialModel;
+            }
     </script>
 }

@@ -91,7 +91,7 @@
     <Property Name="ID_INMUEBLE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="INMUEBLE" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="NUMEROEXT" Type="Int32" Nullable="false" />
-    <Property Name="NUMEROINT" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="NUMEROINT" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
     <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
     <Property Name="ID_RESIDENCIAL" Type="Int32" Nullable="false" />
     <NavigationProperty Name="CAT_RESIDENCIAL" Relationship="Database1Model.FK__CAT_INMUE__ID_RE__38996AB5" FromRole="CAT_INMUEBLE" ToRole="CAT_RESIDENCIAL" />
@@ -102,7 +102,7 @@
     </Key>
     <Property Name="ID_RESIDENCIAL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="RESIDENCIAL" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="ACTIVO" Type="Int32" Nullable="false" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="CAT_INMUEBLE" Relationship="Database1Model.FK__CAT_INMUE__ID_RE__38996AB5" FromRole="CAT_RESIDENCIAL" ToRole="CAT_INMUEBLE" />
     <Property Name="ABREVIATURA" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
   </EntityType>

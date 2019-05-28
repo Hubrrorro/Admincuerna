@@ -219,6 +219,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Catalogos\Residencial.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Result.cs" />
@@ -234,6 +235,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\sweetalert2.css" />
     <Content Include="DAL\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -269,13 +271,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="SweetAlert2\enhancers.js" />
-    <Content Include="SweetAlert2\globalState.js" />
-    <Content Include="SweetAlert2\instanceMethods.js" />
-    <Content Include="SweetAlert2\privateProps.js" />
-    <Content Include="SweetAlert2\staticMethods.js" />
-    <Content Include="SweetAlert2\SweetAlert.js" />
-    <Content Include="SweetAlert2\sweetalert2.js" />
+    <Content Include="Scripts\sweetalert2.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -312,11 +308,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Residencial\Index.cshtml" />
     <Content Include="Views\Residencial\GridResidencial.cshtml" />
-    <Content Include="SweetAlert2\variables.scss" />
-    <Content Include="SweetAlert2\toasts.scss" />
-    <Content Include="SweetAlert2\sweetalert2.scss" />
-    <Content Include="SweetAlert2\mixins.scss" />
-    <Content Include="SweetAlert2\animations.scss" />
     <Content Include="Views\Residencial\Residencial.cshtml" />
   </ItemGroup>
   <ItemGroup />

@@ -11,7 +11,7 @@
                     grid.Column("ABREVIATURA", "Abreviatura"),
                     grid.Column(header: "Estatus", format: (item) => new HtmlString(item.Activo ? "Activo" : "Inactivo")),
                     grid.Column(header: "Acciones", format: (item) => new HtmlString(
-                       "<a id=\"" + item.ID_RESIDENCIAL + "\" onclick=\"editarRazonSocail(this)\" class=\"btn-floating waves-effect waves-light btn-small teal darken-1 tooltipped\" data-position=\"top\"><i class=\"material-icons\">edit</i></a>"  
+                       "<a  onClick='FncEditar("+ item.ID_RESIDENCIAL +")' class='btn btn-primary'>Editar</a>"
 
                     ))
                 ))

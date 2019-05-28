@@ -10,7 +10,7 @@
         <label for="usr">Busca la residencial:</label>
         <input type="text" class="form-control" id="txtbuscar" placeholder="Buscar..">
         <div class="input-group-append">
-            <button class="btn btn-success" type="submit">Buscar</button>
+            <button id="btnBuscar" class="btn btn-success" type="submit">Buscar</button>
         </div>
     </div>
     <div class="input-group  col-sm-2 col-md-2 col-lg-2">
@@ -25,8 +25,21 @@
     $(function () {
         ExecuteAjax("@Url.Action("Search")", "POST", FncShowGrid, false);
     });
+    $('#btnBuscar').on('click', function () {
+        model = new Object();
+        model.nombre = $('#txtbuscar').val();
+        if ($('#txtbuscar').val() == "")
+            ExecuteAjax("@Url.Action("Search")", "POST", FncShowGrid, false);
+        else
+            ExecuteAjax2(model,"@Url.Action("SearchResidencial")", "POST", FncShowGrid, false);
+    });
     function FncShowGrid(data) {
         $("#divGrid").html(data);
+    }
+    function FncEditar(id) {
+        var url = "@Url.Action("Details")"
+        url = url + "?id_Residencial=" + id;
+        window.location.assign(url);
     }
 </script>
     }
