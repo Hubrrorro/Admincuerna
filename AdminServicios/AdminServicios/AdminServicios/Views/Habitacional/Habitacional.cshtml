@@ -1,0 +1,111 @@
+﻿@model  AdminServicios.DAL.CAT_HABITACIONAL
+@{
+    ViewBag.Title = "Habitacional";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (ViewBag.Editar == 1)
+{
+    <h5>Modificar conjunto habitacional</h5>
+}
+else
+{
+    <h5>Agregar conjunto habitacional</h5>
+}
+<input type="hidden" id="hiddenIdHab" value="@Model.Id_HABITACIONAL" />
+<div class="row">
+    <div class="input-field col s4 m4 l4">
+        <select id="ddlResidencial">
+            <option value="0">Selecciona</option>
+        </select>
+        <label>Conjunto Residencial:</label>
+    </div>
+    <div class="col s12 m6 l6">
+        <div class="input-field">
+            <label for="txthabitacional">Conjunto Habitacional:</label>
+            <input type="text" class="form-control" maxlength="200" value="@Model.HABITACIONAL" id="txthabitacional">
+        </div>
+    </div>
+    @if (ViewBag.Editar == 1)
+    {
+    <label>
+        <input id="chkActivo" type="checkbox">
+        <span>Estatus</span>
+    </label>
+    }
+</div>
+<div class="row">
+    <div class="col s6 m6 l6">
+        <a href="@Url.Action("Index")" class="waves-effect waves-light btn red"><i class="material-icons left">highlight_off</i>Cancelar</a>
+    </div>
+    @if (ViewBag.Editar == 1)
+    {
+        <div class="col s6 m6 l6 right-align">
+            <button id="btnActualizar" type="button" class="waves-effect waves-light btn"><i class="material-icons left">save</i> Actualizar</button>
+        </div>
+    }
+    else
+    {
+        <div class="col s6 m6 l6 right-align">
+            <button id="btnGuardar" type="button" class="waves-effect waves-light btn"><i class="material-icons left">save</i> Guardar</button>
+        </div>
+    }
+</div>
+
+@section scripts{
+    <script>
+        function FncLimpiar() {
+            $('#txthabitacional').val("");
+            $('#ddlResidencial').val("0");
+            $('select').formSelect();
+        }
+        var editar = @ViewBag.Editar;
+        $(function () {
+            ExecuteAjax("@Url.Action("ObtenerResidencial")", "POST", FncObtenerResidencial, false);
+            if (editar == 1) {
+                if ("@Model.ACTIVO" == "True")
+                    document.getElementById("chkActivo").checked = true;
+                else
+                    document.getElementById("chkActivo").checked = false;
+            }
+        });
+        $('#btnActualizar').on('click', function () {
+            var habitacionalModel = FncObtenerModelo();
+            ExecuteAjaxModelMensaje(habitacionalModel,"@Url.Action("Edit")", "POST", false);
+        });
+        $('#btnGuardar').on('click', function () {
+            var habitacionalModel = FncObtenerModelo();
+            ExecuteAjaxModelMensaje(habitacionalModel, "@Url.Action("Create")", "POST", false);
+            FncLimpiar();
+        });
+        function FncObtenerResidencial(data) {
+            if (data != null) {
+                $.each(data.datos, function () {
+                    $('#ddlResidencial').append($("<option></option>").attr("value", this.ID_RESIDENCIAL).text(this.RESIDENCIAL));
+                });
+                if (editar == 1) {
+                    $('#ddlResidencial').val("@Model.ID_RESIDENCIAL");
+                }
+                $('select').formSelect();
+            } else {
+                return;
+            }
+        }
+        function FncObtenerModelo() {
+            var habitacionalModel = new Object();
+            if (editar == 1)
+            {
+                habitacionalModel.ID_HABITACIONAL = $('#hiddenIdHab').val();
+                habitacionalModel.ACTIVO = document.getElementById("chkActivo").checked;
+            }
+            else
+            {
+                habitacionalModel.ID_HABITACIONAL = 0;
+                
+                habitacionalModel.ACTIVO = 1;
+            }
+            habitacionalModel.ID_RESIDENCIAL = $('#ddlResidencial').val();
+            habitacionalModel.HABITACIONAL = $('#txthabitacional').val();
+            return habitacionalModel;
+            }
+    </script>
+}

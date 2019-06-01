@@ -55,7 +55,7 @@ namespace AdminServicios.Controllers.Catalogos
 
         // POST: Residencial/Create
         [HttpPost]
-        public JsonResult Create(Residencial residencialModel)
+        public JsonResult Create(ResidencialModel residencialModel)
         {
             Result resultado = new Result();
             try
@@ -93,7 +93,7 @@ namespace AdminServicios.Controllers.Catalogos
 
         // GET: Residencial/Edit/5
         [HttpPost]
-        public JsonResult Edit(Residencial residencialModel)
+        public JsonResult Edit(ResidencialModel residencialModel)
         {
             Result resultado = new Result();
             try

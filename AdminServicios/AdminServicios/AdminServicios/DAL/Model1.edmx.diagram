@@ -16,6 +16,8 @@
         <AssociationConnector Association="Database1Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="Database1Model.FK__CAT_INMUE__ID_RE__38996AB5" />
         <AssociationConnector Association="Database1Model.AspNetUserRoles" />
+        <EntityTypeShape EntityType="Database1Model.CAT_HABITACIONAL" Width="1.5" PointX="3" PointY="10.375" />
+        <AssociationConnector Association="Database1Model.FK__CAT_HABIT__ID_RE__49C3F6B7" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -86,5 +86,15 @@
         <ScalarProperty Name="Id" ColumnName="RoleId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="CAT_HABITACIONAL">
+      <EntityTypeMapping TypeName="Database1Model.CAT_HABITACIONAL">
+        <MappingFragment StoreEntitySet="CAT_HABITACIONAL">
+          <ScalarProperty Name="ID_RESIDENCIAL" ColumnName="ID_RESIDENCIAL" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+          <ScalarProperty Name="HABITACIONAL" ColumnName="HABITACIONAL" />
+          <ScalarProperty Name="Id_HABITACIONAL" ColumnName="Id_HABITACIONAL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

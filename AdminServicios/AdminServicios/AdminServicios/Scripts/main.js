@@ -14,11 +14,7 @@
              ShowMessage(data); return; 
         },
         error: function (jqXHR, status, err) {
-            if (jqXHR.status === 401) {
-                redirectLogin();
-                return;
-            }
-            ShowMessage("Error : " + err);
+            
             console.log(jqXHR);
             console.log(status);
             console.log(err);
@@ -44,11 +40,7 @@ function ExecuteAjaxMensaje(_url, _type, funcExe, _sync) {
             else { ShowMessage(data); return; }
         },
         error: function (jqXHR, status, err) {
-            if (jqXHR.status === 401) {
-                redirectLogin();
-                return;
-            }
-            ShowMessage("Error : " + err);
+            
             console.log(jqXHR);
             console.log(status);
             console.log(err);
@@ -70,11 +62,7 @@ function ExecuteAjax(_url, _type, funcExe, _sync) {
                 funcExe(data);
         },
         error: function (jqXHR, status, err) {
-            if (jqXHR.status === 401) {
-                redirectLogin();
-                return;
-            }
-            ShowMessage("Error : " + err);
+            
             console.log(jqXHR);
             console.log(status);
             console.log(err);
@@ -97,11 +85,7 @@ function ExecuteAjax2(_model,_url, _type, funcExe, _sync) {
             funcExe(data);
         },
         error: function (jqXHR, status, err) {
-            if (jqXHR.status === 401) {
-                redirectLogin();
-                return;
-            }
-            ShowMessage("Error : " + err);
+           
             console.log(jqXHR);
             console.log(status);
             console.log(err);

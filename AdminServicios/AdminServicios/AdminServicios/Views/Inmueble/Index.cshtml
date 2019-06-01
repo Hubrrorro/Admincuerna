@@ -1,0 +1,80 @@
+﻿
+@{
+                /**/
+
+                ViewBag.Title = "Residenciales";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h5>Inmueble</h5>
+<div class="row">
+    <div class="input-field col s3 m3 l3">
+
+        <select id="ddlResidencial">
+            <option value="0">Todos</option>
+        </select>
+        <label>Conjunto Residencial:</label>
+    </div>
+    <div class="input-field col s3 m3 l3">
+
+        <select id="ddlHabitacional">
+            <option value="0">Todos</option>
+        </select>
+        <label>Conjunto Habitacional:</label>
+    </div>
+    <div class="col s4 m4 l4">
+        <div class="row">
+            <div class="input-field  col s10 m10 l10">
+                <label for="txtbuscar">Busca el inmueble:</label>
+                <input type="text" id="txtbuscar" placeholder="Buscar..">
+            </div>
+            <div class="col s2 m2 l2">
+                <button id="btnBuscar" class="btn-floating waves-effect waves-light"><i class="material-icons">search</i></button>
+            </div>
+        </div>
+    </div>
+    <div class="col s2 m2 l2">
+        <a class="btn-floating btn-large waves-effect waves-light red" href="@Url.Action("Create")"><i class="material-icons">add</i></a>
+    </div>
+</div>
+<div class="row">
+    <div id="divGrid"></div>
+</div>
+@section scripts{
+    <script>
+    $(function () {
+       //ExecuteAjax("@Url.Action("Search")", "POST", FncShowGrid, false);
+        //ExecuteAjax("@Url.Action("ObtenerResidencial")", "POST", FncObtenerResidencial, false);
+
+    });
+    $('#btnBuscar').on('click', function () {
+        var HabitacionalModel = new Object();
+        HabitacionalModel.HABITACIONAL = $('#txtbuscar').val();
+        HabitacionalModel.ID_RESIDENCIAL = $('#ddlResidencial').val();
+        if ($('#txtbuscar').val() == "" && $('#ddlResidencial').val()=="0")
+            ExecuteAjax("@Url.Action("Search")", "POST", FncShowGrid, false);
+        else
+            ExecuteAjax2(HabitacionalModel,"@Url.Action("SearchHabitacional")", "POST", FncShowGrid, false);
+    });
+        function FncObtenerResidencial(data) {
+            if (data != null) {
+                $.each(data.datos, function () {
+                    $('#ddlResidencial').append($("<option></option>").attr("value", this.ID_RESIDENCIAL).text(this.RESIDENCIAL));
+                });
+                $('select').formSelect();
+            } else {
+                return;
+            }
+        }
+    function FncShowGrid(data) {
+        $("#divGrid").html(data);
+    }
+    function FncEditar(id) {
+        var url = "@Url.Action("Details")"
+        url = url + "?id_Habitacional=" + id;
+        window.location.assign(url);
+    }
+    </script>
+}
+
+

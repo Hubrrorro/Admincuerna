@@ -4,14 +4,14 @@
 }
 
     @grid.GetHtml(
-                htmlAttributes: new { id = "tbl_razon_social" },
-                tableStyle: "display dataTable striped",
+                htmlAttributes: new { id = "tbl_residencial" },
+                tableStyle: "table striped responsive-table",
                 columns: grid.Columns(
                     grid.Column("RESIDENCIAL", "Residencial"),
                     grid.Column("ABREVIATURA", "Abreviatura"),
                     grid.Column(header: "Estatus", format: (item) => new HtmlString(item.Activo ? "Activo" : "Inactivo")),
                     grid.Column(header: "Acciones", format: (item) => new HtmlString(
-                       "<a  onClick='FncEditar("+ item.ID_RESIDENCIAL +")' class='btn btn-primary'>Editar</a>"
+                       "<a  onClick='FncEditar("+ item.ID_RESIDENCIAL + ")' class='btn-floating waves-effect waves-light'><i class='material-icons'>edit</i></a>"
 
                     ))
                 ))

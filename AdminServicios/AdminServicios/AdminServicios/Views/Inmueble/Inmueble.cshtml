@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Residenciales";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h5>Inmueble</h5>
+<div class="row">
+    <div class="input-field  col s10 m10 l10">
+        <div class="row">
+            <div class="input-field  col s10 m10 l10">
+                <input type="text" class="form-control" id="txtbuscar">
+                <label for="txtbuscar">Buscar residencia</label>
+            </div>
+            <div class="col s2 m2 l2">
+                <button id="btnBuscar" class="btn-floating waves-effect waves-light"><i class="material-icons">search</i></button>
+            </div>
+        </div>
+    </div>
+    <div class="col s2 m2 l2">
+        <a class="btn-floating btn-large waves-effect waves-light red" href="@Url.Action("Create")"><i class="material-icons">add</i></a>
+    </div>
+</div>
+<div class="row">
+    <div id="divGrid"></div>
+</div>
+@section scripts{
+    <script>
+    $(function () {
+        ExecuteAjax("@Url.Action("Search")", "POST", FncShowGrid, false);
+    });
+    $('#btnBuscar').on('click', function () {
+        model = new Object();
+        model.nombre = $('#txtbuscar').val();
+        if ($('#txtbuscar').val() == "")
+            ExecuteAjax("@Url.Action("Search")", "POST", FncShowGrid, false);
+        else
+            ExecuteAjax2(model,"@Url.Action("SearchResidencial")", "POST", FncShowGrid, false);
+    });
+    function FncShowGrid(data) {
+        $("#divGrid").html(data);
+    }
+    function FncEditar(id) {
+        var url = "@Url.Action("Details")"
+        url = url + "?id_Residencial=" + id;
+        window.location.assign(url);
+    }
+    </script>
+}
+
+

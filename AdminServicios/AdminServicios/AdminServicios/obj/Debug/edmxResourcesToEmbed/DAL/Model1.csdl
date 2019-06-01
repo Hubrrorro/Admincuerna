@@ -24,6 +24,11 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <EntitySet Name="CAT_HABITACIONAL" EntityType="Database1Model.CAT_HABITACIONAL" />
+    <AssociationSet Name="FK__CAT_HABIT__ID_RE__49C3F6B7" Association="Database1Model.FK__CAT_HABIT__ID_RE__49C3F6B7">
+      <End Role="CAT_RESIDENCIAL" EntitySet="CAT_RESIDENCIAL" />
+      <End Role="CAT_HABITACIONAL" EntitySet="CAT_HABITACIONAL" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
     <Key>
@@ -105,6 +110,7 @@
     <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="CAT_INMUEBLE" Relationship="Database1Model.FK__CAT_INMUE__ID_RE__38996AB5" FromRole="CAT_RESIDENCIAL" ToRole="CAT_INMUEBLE" />
     <Property Name="ABREVIATURA" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CAT_HABITACIONAL" Relationship="Database1Model.FK__CAT_HABIT__ID_RE__49C3F6B7" FromRole="CAT_RESIDENCIAL" ToRole="CAT_HABITACIONAL" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Type="Database1Model.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
@@ -149,5 +155,27 @@
   <Association Name="AspNetUserRoles">
     <End Type="Database1Model.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
     <End Type="Database1Model.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+  </Association>
+  <EntityType Name="CAT_HABITACIONAL">
+    <Key>
+      <PropertyRef Name="Id_HABITACIONAL" />
+    </Key>
+    <Property Name="Id_HABITACIONAL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HABITACIONAL" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+    <Property Name="ID_RESIDENCIAL" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CAT_RESIDENCIAL" Relationship="Database1Model.FK__CAT_HABIT__ID_RE__49C3F6B7" FromRole="CAT_HABITACIONAL" ToRole="CAT_RESIDENCIAL" />
+  </EntityType>
+  <Association Name="FK__CAT_HABIT__ID_RE__49C3F6B7">
+    <End Type="Database1Model.CAT_RESIDENCIAL" Role="CAT_RESIDENCIAL" Multiplicity="1" />
+    <End Type="Database1Model.CAT_HABITACIONAL" Role="CAT_HABITACIONAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CAT_RESIDENCIAL">
+        <PropertyRef Name="ID_RESIDENCIAL" />
+      </Principal>
+      <Dependent Role="CAT_HABITACIONAL">
+        <PropertyRef Name="ID_RESIDENCIAL" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

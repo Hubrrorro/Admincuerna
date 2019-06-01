@@ -1,0 +1,18 @@
+﻿
+@model  List<AdminServicios.Models.Catalogos.HabitacionalModel>
+@{
+    var grid = new WebGrid(Model, canPage: false, canSort: false);
+}
+
+@grid.GetHtml(
+            htmlAttributes: new { id = "tbl_habitacional" },
+            tableStyle: "table striped responsive-table",
+            columns: grid.Columns(
+                grid.Column("RESIDENCIAL", "Conjunto Residencial"),
+                grid.Column("HABITACIONAL", "Conjunto Habitacional"),
+                grid.Column(header: "Estatus", format: (item) => new HtmlString(item.Activo ? "Activo" : "Inactivo")),
+                grid.Column(header: "Acciones", format: (item) => new HtmlString(
+                   "<a  onClick='FncEditar("+ item.ID_HABITACIONAL + ")' class='btn-floating waves-effect waves-light'><i class='material-icons'>edit</i></a>"
+
+                ))
+            ))

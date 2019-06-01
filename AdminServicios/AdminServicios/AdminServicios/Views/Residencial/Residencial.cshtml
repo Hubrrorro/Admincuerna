@@ -5,21 +5,21 @@
 }
 @if (ViewBag.Editar == 1)
 {
-    <h2>Modificar registro residencial</h2>
+    <h5>Modificar conjunto residencial</h5>
 }
 else
 {
-    <h2>Agregar registro residencial</h2>
+    <h5>Agregar conjunto residencial</h5>
 }
 <input type="hidden" id="hiddenIdRec" value="@Model.ID_RESIDENCIAL" />
 <div class="row">
-    <div class="col-sm-6 col-sm-12">
-        <div class="form-group">
-            <label for="txtresidencial">Residencial:</label>
+    <div class="col m6 s12">
+        <div>
+            <label for="txtresidencial">Conjunto Residencial:</label>
             <input type="text" class="form-control" maxlength="200" value="@Model.RESIDENCIAL" id="txtresidencial">
         </div>
     </div>
-    <div class="col-sm-4 col-sm-6">
+    <div class="col m4 s6">
         <div class="form-group">
             <label for="txtabreviatura">Abreviatura:</label>
             <input type="text" class="form-control" maxlength="5" value="@Model.ABREVIATURA" id="txtabreviatura">
@@ -27,27 +27,28 @@ else
     </div>
     @if (ViewBag.Editar == 1)
     {
-        <div class="col-sm-2 col-sm-6">
-            <label class="form-check-label">
-                <input id="chkActivo" type="checkbox" class="form-check-input">Estatus
+        <div class="col s2 m2">
+            <label >
+                <input id="chkActivo" type="checkbox">
+                <span>Estatus</span>
             </label>
         </div>
     }
 </div>
 <div class="row">
-    <div class="col-sm-6 col-md-6">
-        <a href="@Url.Action("Index")" class="btn btn-danger">Cancelar</a>
+    <div class="col s6 m6">
+        <a href="@Url.Action("Index")" class="waves-effect waves-light btn red"><i class="material-icons left">highlight_off</i>Cancelar</a>
     </div>
     @if (ViewBag.Editar == 1)
     {
-        <div class="col-sm-6 col-md-6 right">
-            <button id="btnActualizar" type="button" class="btn btn-primary">Actualizar</button>
+        <div class="col s6 m6 right-align">
+            <button id="btnActualizar" type="button" class="waves-effect waves-light btn"><i class="material-icons left">save</i> Actualizar</button>
         </div>
     }
     else
     {
-        <div class="col-sm-6 col-md-6 right">
-            <button id="btnGuardar" type="button" class="btn btn-primary">Guardar</button>
+        <div class="col s6 m6 right-align">
+            <button id="btnGuardar" type="button" class="waves-effect waves-light btn"><i class="material-icons left">save</i> Guardar</button>
         </div>
     }
 </div>
