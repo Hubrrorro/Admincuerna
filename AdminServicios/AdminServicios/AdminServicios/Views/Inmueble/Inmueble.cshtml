@@ -44,7 +44,17 @@
         var url = "@Url.Action("Details")"
         url = url + "?id_Residencial=" + id;
         window.location.assign(url);
-    }
+        }
+        function FncObtenerResidencial(data) {
+            if (data != null) {
+                $.each(data.datos, function () {
+                    $('#ddlResidencial').append($("<option></option>").attr("value", this.ID_RESIDENCIAL).text(this.RESIDENCIAL));
+                });
+                $('select').formSelect();
+            } else {
+                return;
+            }
+        }
     </script>
 }
 

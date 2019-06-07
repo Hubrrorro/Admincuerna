@@ -75,11 +75,24 @@
       <PropertyRef Name="ID_INMUEBLE" />
     </Key>
     <Property Name="ID_INMUEBLE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="INMUEBLE" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="NUMEROEXT" Type="int" Nullable="false" />
-    <Property Name="NUMEROINT" Type="nvarchar" MaxLength="5" />
+    <Property Name="ID_HABITACIONAL" Type="int" Nullable="false" />
+    <Property Name="NUMEXT" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="NUMINT" Type="nvarchar" MaxLength="10" />
+    <Property Name="PROPIETARIO" Type="nvarchar" MaxLength="200" />
+    <Property Name="EMAIL" Type="nvarchar" MaxLength="200" />
     <Property Name="ACTIVO" Type="bit" Nullable="false" />
-    <Property Name="ID_RESIDENCIAL" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CAT_INMUEBLES">
+    <Key>
+      <PropertyRef Name="ID_INMUEBLE" />
+    </Key>
+    <Property Name="ID_INMUEBLE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_HABITACIONAL" Type="int" Nullable="false" />
+    <Property Name="NUMEXT" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="NUMINT" Type="nvarchar" MaxLength="10" />
+    <Property Name="PROPIETARIO" Type="nvarchar" MaxLength="200" />
+    <Property Name="EMAIL" Type="nvarchar" MaxLength="200" />
+    <Property Name="ACTIVO" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="CAT_RESIDENCIAL">
     <Key>
@@ -102,15 +115,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CAT_INMUE__ID_RE__3B75D760">
-    <End Role="CAT_RESIDENCIAL" Type="Self.CAT_RESIDENCIAL" Multiplicity="1" />
+  <Association Name="FK__CAT_INMUE__ID_HA__60A75C0F">
+    <End Role="CAT_HABITACIONAL" Type="Self.CAT_HABITACIONAL" Multiplicity="1" />
+    <End Role="CAT_INMUEBLES" Type="Self.CAT_INMUEBLES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CAT_HABITACIONAL">
+        <PropertyRef Name="Id_HABITACIONAL" />
+      </Principal>
+      <Dependent Role="CAT_INMUEBLES">
+        <PropertyRef Name="ID_HABITACIONAL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CAT_INMUE__ID_HA__6477ECF3">
+    <End Role="CAT_HABITACIONAL" Type="Self.CAT_HABITACIONAL" Multiplicity="1" />
     <End Role="CAT_INMUEBLE" Type="Self.CAT_INMUEBLE" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="CAT_RESIDENCIAL">
-        <PropertyRef Name="ID_RESIDENCIAL" />
+      <Principal Role="CAT_HABITACIONAL">
+        <PropertyRef Name="Id_HABITACIONAL" />
       </Principal>
       <Dependent Role="CAT_INMUEBLE">
-        <PropertyRef Name="ID_RESIDENCIAL" />
+        <PropertyRef Name="ID_HABITACIONAL" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -179,13 +204,18 @@
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CAT_HABITACIONAL" EntityType="Self.CAT_HABITACIONAL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CAT_INMUEBLE" EntityType="Self.CAT_INMUEBLE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CAT_INMUEBLES" EntityType="Self.CAT_INMUEBLES" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CAT_RESIDENCIAL" EntityType="Self.CAT_RESIDENCIAL" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__CAT_HABIT__ID_RE__49C3F6B7" Association="Self.FK__CAT_HABIT__ID_RE__49C3F6B7">
       <End Role="CAT_RESIDENCIAL" EntitySet="CAT_RESIDENCIAL" />
       <End Role="CAT_HABITACIONAL" EntitySet="CAT_HABITACIONAL" />
     </AssociationSet>
-    <AssociationSet Name="FK__CAT_INMUE__ID_RE__3B75D760" Association="Self.FK__CAT_INMUE__ID_RE__3B75D760">
-      <End Role="CAT_RESIDENCIAL" EntitySet="CAT_RESIDENCIAL" />
+    <AssociationSet Name="FK__CAT_INMUE__ID_HA__60A75C0F" Association="Self.FK__CAT_INMUE__ID_HA__60A75C0F">
+      <End Role="CAT_HABITACIONAL" EntitySet="CAT_HABITACIONAL" />
+      <End Role="CAT_INMUEBLES" EntitySet="CAT_INMUEBLES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CAT_INMUE__ID_HA__6477ECF3" Association="Self.FK__CAT_INMUE__ID_HA__6477ECF3">
+      <End Role="CAT_HABITACIONAL" EntitySet="CAT_HABITACIONAL" />
       <End Role="CAT_INMUEBLE" EntitySet="CAT_INMUEBLE" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">

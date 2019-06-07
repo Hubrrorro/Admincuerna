@@ -30,8 +30,9 @@ namespace AdminServicios.DAL
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-        public virtual DbSet<CAT_INMUEBLE> CAT_INMUEBLE { get; set; }
         public virtual DbSet<CAT_RESIDENCIAL> CAT_RESIDENCIAL { get; set; }
         public virtual DbSet<CAT_HABITACIONAL> CAT_HABITACIONAL { get; set; }
+        public virtual DbSet<CAT_INMUEBLES> CAT_INMUEBLES { get; set; }
+        public virtual DbSet<CAT_INMUEBLE> CAT_INMUEBLE { get; set; }
     }
 }

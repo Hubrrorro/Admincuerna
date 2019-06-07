@@ -43,10 +43,15 @@
 @section scripts{
     <script>
     $(function () {
-       //ExecuteAjax("@Url.Action("Search")", "POST", FncShowGrid, false);
-        //ExecuteAjax("@Url.Action("ObtenerResidencial")", "POST", FncObtenerResidencial, false);
+        //ExecuteAjax("@Url.Action("Search")", "POST", FncShowGrid, false);
 
+       ExecuteAjax("@Url.Action("ObtenerResidencial")", "POST", FncObtenerResidencial, false);
     });
+        $('#ddlResidencial').on('change', function () {
+            var model = new Object();
+            model.id_Residencial = $('#ddlHabitacional').val();
+            ExecuteAjax2(model, "@Url.Action("ObtenerHabitacional")", "POST", FncObtenerHabitacional, false);
+        });
     $('#btnBuscar').on('click', function () {
         var HabitacionalModel = new Object();
         HabitacionalModel.HABITACIONAL = $('#txtbuscar').val();
@@ -60,6 +65,16 @@
             if (data != null) {
                 $.each(data.datos, function () {
                     $('#ddlResidencial').append($("<option></option>").attr("value", this.ID_RESIDENCIAL).text(this.RESIDENCIAL));
+                });
+                $('select').formSelect();
+            } else {
+                return;
+            }
+        }
+        function FncObtenerHabitacional(data) {
+            if (data != null) {
+                $.each(data.datos, function () {
+                    $('#ddlHabitacional').append($("<option></option>").attr("value", this.ID_HABITACIONAL).text(this.HABITACIONAL));
                 });
                 $('select').formSelect();
             } else {

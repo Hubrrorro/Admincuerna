@@ -56,18 +56,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CAT_INMUEBLE">
-      <EntityTypeMapping TypeName="Database1Model.CAT_INMUEBLE">
-        <MappingFragment StoreEntitySet="CAT_INMUEBLE">
-          <ScalarProperty Name="ID_RESIDENCIAL" ColumnName="ID_RESIDENCIAL" />
-          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
-          <ScalarProperty Name="NUMEROINT" ColumnName="NUMEROINT" />
-          <ScalarProperty Name="NUMEROEXT" ColumnName="NUMEROEXT" />
-          <ScalarProperty Name="INMUEBLE" ColumnName="INMUEBLE" />
-          <ScalarProperty Name="ID_INMUEBLE" ColumnName="ID_INMUEBLE" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="CAT_RESIDENCIAL">
       <EntityTypeMapping TypeName="Database1Model.CAT_RESIDENCIAL">
         <MappingFragment StoreEntitySet="CAT_RESIDENCIAL">
@@ -93,6 +81,32 @@
           <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
           <ScalarProperty Name="HABITACIONAL" ColumnName="HABITACIONAL" />
           <ScalarProperty Name="Id_HABITACIONAL" ColumnName="Id_HABITACIONAL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CAT_INMUEBLES">
+      <EntityTypeMapping TypeName="Database1Model.CAT_INMUEBLES">
+        <MappingFragment StoreEntitySet="CAT_INMUEBLES">
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="PROPIETARIO" ColumnName="PROPIETARIO" />
+          <ScalarProperty Name="NUMINT" ColumnName="NUMINT" />
+          <ScalarProperty Name="NUMEXT" ColumnName="NUMEXT" />
+          <ScalarProperty Name="ID_HABITACIONAL" ColumnName="ID_HABITACIONAL" />
+          <ScalarProperty Name="ID_INMUEBLE" ColumnName="ID_INMUEBLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CAT_INMUEBLE">
+      <EntityTypeMapping TypeName="Database1Model.CAT_INMUEBLE">
+        <MappingFragment StoreEntitySet="CAT_INMUEBLE">
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="PROPIETARIO" ColumnName="PROPIETARIO" />
+          <ScalarProperty Name="NUMINT" ColumnName="NUMINT" />
+          <ScalarProperty Name="NUMEXT" ColumnName="NUMEXT" />
+          <ScalarProperty Name="ID_HABITACIONAL" ColumnName="ID_HABITACIONAL" />
+          <ScalarProperty Name="ID_INMUEBLE" ColumnName="ID_INMUEBLE" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

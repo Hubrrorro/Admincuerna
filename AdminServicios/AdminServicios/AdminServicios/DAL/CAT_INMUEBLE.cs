@@ -15,12 +15,13 @@ namespace AdminServicios.DAL
     public partial class CAT_INMUEBLE
     {
         public int ID_INMUEBLE { get; set; }
-        public string INMUEBLE { get; set; }
-        public int NUMEROEXT { get; set; }
-        public string NUMEROINT { get; set; }
+        public int ID_HABITACIONAL { get; set; }
+        public string NUMEXT { get; set; }
+        public string NUMINT { get; set; }
+        public string PROPIETARIO { get; set; }
+        public string EMAIL { get; set; }
         public bool ACTIVO { get; set; }
-        public int ID_RESIDENCIAL { get; set; }
     
-        public virtual CAT_RESIDENCIAL CAT_RESIDENCIAL { get; set; }
+        public virtual CAT_HABITACIONAL CAT_HABITACIONAL { get; set; }
     }
 }
