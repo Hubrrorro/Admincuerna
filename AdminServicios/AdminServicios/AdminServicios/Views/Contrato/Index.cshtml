@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="row">
+    <div class="input-field col s6 m3 l3">
+
+        <select id="ddlResidencial">
+            <option value="0">Todos</option>
+        </select>
+        <label>Conjunto Residencial:</label>
+    </div>
+    <div class="input-field col s6 m3 l3">
+
+        <select id="ddlHabitacional">
+            <option value="0">Todos</option>
+        </select>
+        <label>Conjunto Habitacional:</label>
+    </div>
+    <div class="col s4 m4 l4">
+        <div class="row">
+            <div class="input-field  col s10 m10 l10">
+                <label for="txtbuscar">Busca el contrato:</label>
+                <input type="text" id="txtbuscar" placeholder="Buscar..">
+            </div>
+            <div class="col s2 m2 l2">
+                <button id="btnBuscar" class="btn-floating waves-effect waves-light"><i class="material-icons">search</i></button>
+            </div>
+        </div>
+    </div>
+    <div class="col s2 m2 l2">
+        <a class="btn-floating btn-large waves-effect waves-light red" href="@Url.Action("Create")"><i class="material-icons">add</i></a>
+    </div>
+</div>
+<div class="row">
+    <div id="divGrid"></div>
+</div>
+
+@section scripts{
+    <script>
+    $(function () {
+       ExecuteAjax("@Url.Action("ObtenerResidencial")", "POST", FncObtenerResidencial, false);
+        ExecuteAjax("@Url.Action("ObtenerInmueble")", "POST", FncShowGrid, false);
+    });
+             $('#ddlResidencial').on('change', function () {
+            var model = new Object();
+            model.id_Residencial = $('#ddlResidencial').val();
+            ExecuteAjax2(model, "@Url.Action("ObtenerHabitacional")", "POST", FncObtenerHabitacional, false);
+             });
+        $('#btnBuscar').on('click', function () {
+        var HabitacionalModel = new Object();
+        var residencial = $('#ddlResidencial').val();
+        var habitacional = $('#ddlHabitacional').val();
+        var inmueble = $('#txtbuscar').val();
+        HabitacionalModel.Id_Habitacional = habitacional;
+        HabitacionalModel.Id_Residencial = residencial;
+        HabitacionalModel.Propietario =  inmueble
+        if (inmueble == "" && residencial == "0" && habitacional == "0")
+            ExecuteAjax("@Url.Action("ObtenerInmueble")", "POST", FncShowGrid, false);
+        else
+            ExecuteAjax2(HabitacionalModel,"@Url.Action("Obtener")", "POST", FncShowGrid, false);
+    });
+        function FncObtenerResidencial(data) {
+            $('#ddlResidencial').html('');
+            $('#ddlResidencial').append($("<option></option>").attr("value", "0").text("Todos"));
+            if (data != null) {
+                $.each(data.datos, function () {
+                    $('#ddlResidencial').append($("<option></option>").attr("value", this.ID_RESIDENCIAL).text(this.RESIDENCIAL));
+                });
+                $('select').formSelect();
+            } else {
+                return;
+            }
+        }
+        function FncObtenerHabitacional(data) {
+            $('#ddlHabitacional').html('');
+            $('#ddlHabitacional').append($("<option></option>").attr("value", "0").text("Todos"));
+            if (data != null) {
+                $.each(data.datos, function () {
+                    $('#ddlHabitacional').append($("<option></option>").attr("value", this.ID_HABITACIONAL).text(this.HABITACIONAL));
+                });
+                $('select').formSelect();
+            } else {
+                return;
+            }
+        }
+        function FncShowGrid(data) {
+            $("#divGrid").html(data);
+        }
+        function FncEditar(id) {
+        var url = "@Url.Action("Details")"
+        url = url + "?id_Inmueble=" + id;
+        window.location.assign(url);
+    }
+    </script>
+}
