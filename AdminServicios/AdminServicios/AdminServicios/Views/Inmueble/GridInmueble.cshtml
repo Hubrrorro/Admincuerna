@@ -1,1 +1,22 @@
 ﻿
+@model  List<AdminServicios.Models.Catalogos.InmuebleModel>
+@{
+    var grid = new WebGrid(Model, canPage: false, canSort: false);
+}
+
+@grid.GetHtml(
+            htmlAttributes: new { id = "tbl_inmueble" },
+            tableStyle: "table striped responsive-table",
+            columns: grid.Columns(
+                grid.Column("RESIDENCIAL", "Conjunto Residencial"),
+                grid.Column("HABITACIONAL", "Conjunto Habitacional"),
+                 grid.Column("NUMEXT", "Número Exterior"),
+                grid.Column("NUMINT", "Número Interior"),
+                grid.Column("PROPIETARIO", "Propietario"),
+                grid.Column("EMAIL", "Correo Electrónico"),
+                grid.Column(header: "Estatus", format: (item) => new HtmlString(item.Activo==1 ? "Activo" : "Inactivo")),
+                grid.Column(header: "Acciones", format: (item) => new HtmlString(
+                   "<a  onClick='FncEditar("+ item.Id_Inmueble + ")' class='btn-floating waves-effect waves-light'><i class='material-icons'>edit</i></a>"
+
+                ))
+            ))

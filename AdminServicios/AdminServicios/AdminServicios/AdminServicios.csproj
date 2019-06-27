@@ -176,6 +176,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Catalogos\ContratoController.cs" />
     <Compile Include="Controllers\Catalogos\HabitacionalController.cs" />
     <Compile Include="Controllers\Catalogos\InmuebleController.cs" />
     <Compile Include="Controllers\Catalogos\ResidencialController.cs" />
@@ -227,6 +228,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Catalogos\ContratoModel.cs" />
+    <Compile Include="Models\Catalogos\CostosContratoModel.cs" />
     <Compile Include="Models\Catalogos\HabitacionalModel.cs" />
     <Compile Include="Models\Catalogos\InmuebleModel.cs" />
     <Compile Include="Models\Catalogos\ResidencialModel.cs" />
@@ -325,6 +328,7 @@
     <Content Include="Views\Inmueble\Index.cshtml" />
     <Content Include="Views\Inmueble\GridInmueble.cshtml" />
     <Content Include="Views\Inmueble\Inmueble.cshtml" />
+    <Content Include="Views\Contrato\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

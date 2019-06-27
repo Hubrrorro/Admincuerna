@@ -71,10 +71,12 @@ namespace AdminServicios.Controllers.Catalogos
                     }
                     else
                     {
-                        AdminServicios.DAL.CAT_RESIDENCIAL residencial = new DAL.CAT_RESIDENCIAL();
-                        residencial.RESIDENCIAL = residencialModel.RESIDENCIAL;
-                        residencial.ABREVIATURA = residencialModel.ABREVIATURA;
-                        residencial.ACTIVO = true;
+                        AdminServicios.DAL.CAT_RESIDENCIAL residencial = new DAL.CAT_RESIDENCIAL()
+                        {
+                            RESIDENCIAL = residencialModel.RESIDENCIAL,
+                            ABREVIATURA = residencialModel.ABREVIATURA,
+                            ACTIVO = true
+                        };
                         conex.CAT_RESIDENCIAL.Add(residencial);
                         conex.SaveChanges();
                         resultado.resultado = true;

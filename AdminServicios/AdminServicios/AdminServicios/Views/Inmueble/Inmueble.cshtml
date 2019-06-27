@@ -1,60 +1,187 @@
-﻿
+﻿@model  AdminServicios.Models.Catalogos.InmuebleModel
 @{
-    ViewBag.Title = "Residenciales";
+    ViewBag.Title = "Inmueble";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h5>Inmueble</h5>
 <div class="row">
-    <div class="input-field  col s10 m10 l10">
-        <div class="row">
-            <div class="input-field  col s10 m10 l10">
-                <input type="text" class="form-control" id="txtbuscar">
-                <label for="txtbuscar">Buscar residencia</label>
-            </div>
-            <div class="col s2 m2 l2">
-                <button id="btnBuscar" class="btn-floating waves-effect waves-light"><i class="material-icons">search</i></button>
-            </div>
-        </div>
+    <div class="input-field col s3 m3 l3">
+
+        <select id="ddlResidencial">
+            <option value="0">Todos</option>
+        </select>
+        <label>Conjunto Residencial:</label>
+    </div>
+    <div class="input-field col s6 m3 l3">
+
+        <select id="ddlHabitacional">
+            <option value="0">Todos</option>
+        </select>
+        <label>Conjunto Habitacional:</label>
+    </div>
+    <div class="input-field  col s6 m3 l3">
+
+        <label for="txtnumext">Numero Exterior:</label>
+        <input type="text" id="txtnumext">
+
+    </div>
+    <div class="input-field  col s6 m3 l3">
+
+        <label for="txtnumint">Numero Interior:</label>
+        <input type="text" id="txtnumint">
+    </div>
+    <div class="input-field  col s6 m6 l6">
+        <input type="hidden" id="hiddenIdInm"/>
+        <label for="txtpropietario">Propietario:</label>
+        <input type="text" id="txtpropietario">
+    </div>
+    <div class="input-field  col s6 m6 l6">
+
+        <label for="txtemail">Correo electrónico:</label>
+        <input type="text" id="txtemail">
     </div>
     <div class="col s2 m2 l2">
-        <a class="btn-floating btn-large waves-effect waves-light red" href="@Url.Action("Create")"><i class="material-icons">add</i></a>
+        @if (ViewBag.Editar == 1)
+        {
+            <label>
+                <input id="chkActivo" type="checkbox">
+                <span>Estatus</span>
+            </label>
+        }
     </div>
 </div>
 <div class="row">
-    <div id="divGrid"></div>
+    <div class="col s6 m6 l6">
+        <a href="@Url.Action("Index")" class="waves-effect waves-light btn red"><i class="material-icons left">highlight_off</i>Cancelar</a>
+    </div>
+    @if (ViewBag.Editar == 1)
+    {
+        <div class="col s6 m6 l6 right-align">
+            <button id="btnActualizar" type="button" class="waves-effect waves-light btn"><i class="material-icons left">save</i> Actualizar</button>
+        </div>
+    }
+    else
+    {
+        <div class="col s6 m6 l6 right-align">
+            <button id="btnGuardar" type="button" class="waves-effect waves-light btn"><i class="material-icons left">save</i> Guardar</button>
+        </div>
+    }
 </div>
 @section scripts{
     <script>
-    $(function () {
-        ExecuteAjax("@Url.Action("Search")", "POST", FncShowGrid, false);
-    });
-    $('#btnBuscar').on('click', function () {
-        model = new Object();
-        model.nombre = $('#txtbuscar').val();
-        if ($('#txtbuscar').val() == "")
-            ExecuteAjax("@Url.Action("Search")", "POST", FncShowGrid, false);
-        else
-            ExecuteAjax2(model,"@Url.Action("SearchResidencial")", "POST", FncShowGrid, false);
-    });
-    function FncShowGrid(data) {
-        $("#divGrid").html(data);
-    }
-    function FncEditar(id) {
-        var url = "@Url.Action("Details")"
-        url = url + "?id_Residencial=" + id;
-        window.location.assign(url);
-        }
-        function FncObtenerResidencial(data) {
+            function FncLimpiar() {
+                $('#ddlResidencial').val("0");
+                $('#ddlHabitacional').val("0");
+                $('#txtnumext').val("");
+                $('#txtnumint').val("");
+                $('#txtpropietario').val("");
+                $('#txtemail').val("");
+                $('select').formSelect();
+            }
+   var editar = @ViewBag.Editar;
+        $(function () {
+            ExecuteAjax("@Url.Action("ObtenerResidencial")", "POST", FncObtenerResidencial, true);
+            if (editar == 1) {
+                    $('#hiddenIdInm').val("@Model.Id_Inmueble")
+                    $('#ddlResidencial').val("@Model.Id_Residencial");
+                    if (@Model.Activo== 1) {
+                        document.getElementById("chkActivo").checked = true;
+                    }
+                    else {
+                        document.getElementById("chkActivo").checked = false;
+                    }
+                    var model = new Object();
+                    model.id_Residencial = @Model.Id_Residencial;
+                    ExecuteAjax2(model, "@Url.Action("ObtenerHabitacional")", "POST", FncObtenerHabitacional, true);
+                    
+                    $('#ddlHabitacional').val("@Model.Id_Habitacional");
+                    $('#txtnumext').val("@Model.NumExt");
+                    $('#txtnumint').val("@Model.NumInt");
+                    $('#txtpropietario').val("@Model.Propietario");
+                    $('#txtemail').val("@Model.Email");
+                    M.updateTextFields();
+                    $('select').formSelect();
+                
+            }
+        });
+            $('#ddlResidencial').on('change', function () {
+            var model = new Object();
+            model.id_Residencial = $('#ddlResidencial').val();
+            ExecuteAjax2(model, "@Url.Action("ObtenerHabitacional")", "POST", FncObtenerHabitacional, false);
+            });
+        function FncObtenerHabitacional(data) {
+            $('#ddlHabitacional').html('');
+            $('#ddlHabitacional').append($("<option></option>").attr("value", "0").text("Todos"));
             if (data != null) {
                 $.each(data.datos, function () {
-                    $('#ddlResidencial').append($("<option></option>").attr("value", this.ID_RESIDENCIAL).text(this.RESIDENCIAL));
+                    $('#ddlHabitacional').append($("<option></option>").attr("value", this.ID_HABITACIONAL).text(this.HABITACIONAL));
                 });
                 $('select').formSelect();
             } else {
                 return;
             }
         }
+     $('#btnActualizar').on('click', function () {
+         var inmueble = FncObtenerModelo();
+         ExecuteAjaxModelMensaje(inmueble,"@Url.Action("Edit")", "POST", false);
+        });
+        $('#btnGuardar').on('click', function () {
+            var inmuebleModel = FncObtenerModelo();
+            ExecuteAjaxModelMensaje(inmuebleModel, "@Url.Action("Create")", "POST", false);
+            FncLimpiar();
+        });
+        function FncObtenerResidencial(data) {
+            if (data != null) {
+                $.each(data.datos, function () {
+                    $('#ddlResidencial').append($("<option></option>").attr("value", this.ID_RESIDENCIAL).text(this.RESIDENCIAL));
+                });
+                if (editar == 1) {
+                    $('#ddlResidencial').val("@Model.Id_Residencial");
+                }
+                $('select').formSelect();
+            } else {
+                return;
+            }
+            }
+             function FncObtenerRHabitacional(data) {
+            if (data != null) {
+                $.each(data.datos, function () {
+                    $('#ddlHabitacional').append($("<option></option>").attr("value", this.ID_RESIDENCIAL).text(this.RESIDENCIAL));
+                });
+                if (editar == 1) {
+                    $('#ddlHabitacional').val("@Model.Id_Habitacional");
+                }
+                $('select').formSelect();
+            } else {
+                return;
+            }
+        }
+        function FncObtenerModelo() {
+            var inmuebleModel = new Object();
+            if (editar == 1)
+            {
+                inmuebleModel.Id_Inmueble = $('#hiddenIdInm').val();
+                if (document.getElementById("chkActivo").checked) {
+                    inmuebleModel.ACTIVO = 1;
+                }
+                else {
+                    inmuebleModel.ACTIVO = 0;
+                }
+            }
+            else
+            {
+                inmuebleModel.Id_Inmueble = 0;
+                inmuebleModel.ACTIVO = 1;
+            }
+            inmuebleModel.Id_Residencial = $('#ddlResidencial').val();
+            inmuebleModel.Id_Habitacional = $('#ddlHabitacional').val();
+            inmuebleModel.NumExt = $('#txtnumext').val();
+            inmuebleModel.NumInt = $('#txtnumint').val();
+            inmuebleModel.Propietario = $('#txtpropietario').val();
+            inmuebleModel.Email = $('#txtemail').val();
+            return inmuebleModel;
+            }
     </script>
 }
 
