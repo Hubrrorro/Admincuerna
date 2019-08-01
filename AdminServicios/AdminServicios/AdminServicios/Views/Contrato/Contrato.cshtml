@@ -1,0 +1,62 @@
+﻿@model AdminServicios.Models.Catalogos.ContratoModel
+@{
+    ViewBag.Title = "Contrato";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Contrato</h2>
+
+<div class="row">
+    <div class="input-field col s3 m4 l4">
+
+        <select id="ddlResidencial">
+            <option value="0">Todos</option>
+        </select>
+        <label>Conjunto Residencial:</label>
+    </div>
+    <div class="input-field col s6 m4 l4">
+
+        <select id="ddlHabitacional">
+            <option value="0">Todos</option>
+        </select>
+        <label>Conjunto Habitacional:</label>
+    </div>
+    <div class="input-field  col s6 m4 l4">
+        <label for="txtcontrato">Contrato:</label>
+        <input type="text" id="txtcontrato">
+    </div>
+    <div class="input-field  col s6 m4 l4">
+        <label for="txtfechaIni">Fecha Inicio:</label>
+        <input type="text" id="txtfechaIni">
+    </div>
+    <div class="input-field  col s6 m4 l4">
+        <label for="txtfechaFin">Fecha Fin:</label>
+        <input type="text" id="txtfechaFin">
+    </div>
+    <div class="col s2 m2 l2">
+        @if (ViewBag.Editar == 1)
+        {
+            <label>
+                <input id="chkActivo" type="checkbox">
+                <span>Estatus</span>
+            </label>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col s6 m6 l6">
+        <a href="@Url.Action("Index")" class="waves-effect waves-light btn red"><i class="material-icons left">highlight_off</i>Cancelar</a>
+    </div>
+    @if (ViewBag.Editar == 1)
+    {
+        <div class="col s6 m6 l6 right-align">
+            <button id="btnActualizar" type="button" class="waves-effect waves-light btn"><i class="material-icons left">save</i> Actualizar</button>
+        </div>
+    }
+    else
+    {
+        <div class="col s6 m6 l6 right-align">
+            <button id="btnGuardar" type="button" class="waves-effect waves-light btn"><i class="material-icons left">save</i> Guardar</button>
+        </div>
+    }
+</div>

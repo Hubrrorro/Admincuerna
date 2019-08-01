@@ -34,5 +34,7 @@ namespace AdminServicios.DAL
         public virtual DbSet<CAT_HABITACIONAL> CAT_HABITACIONAL { get; set; }
         public virtual DbSet<CAT_INMUEBLES> CAT_INMUEBLES { get; set; }
         public virtual DbSet<CAT_INMUEBLE> CAT_INMUEBLE { get; set; }
+        public virtual DbSet<CAT_CONTRATO> CAT_CONTRATO { get; set; }
+        public virtual DbSet<CAT_COSTOS> CAT_COSTOS { get; set; }
     }
 }

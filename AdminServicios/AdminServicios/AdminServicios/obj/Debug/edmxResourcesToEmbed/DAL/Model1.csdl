@@ -34,6 +34,16 @@
       <End Role="CAT_HABITACIONAL" EntitySet="CAT_HABITACIONAL" />
       <End Role="CAT_INMUEBLE" EntitySet="CAT_INMUEBLE" />
     </AssociationSet>
+    <EntitySet Name="CAT_CONTRATO" EntityType="Database1Model.CAT_CONTRATO" />
+    <EntitySet Name="CAT_COSTOS" EntityType="Database1Model.CAT_COSTOS" />
+    <AssociationSet Name="FK__CAT_CONTR__ID_HA__73BA3083" Association="Database1Model.FK__CAT_CONTR__ID_HA__73BA3083">
+      <End Role="CAT_HABITACIONAL" EntitySet="CAT_HABITACIONAL" />
+      <End Role="CAT_CONTRATO" EntitySet="CAT_CONTRATO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CAT_COSTO__ID_CO__01142BA1" Association="Database1Model.FK__CAT_COSTO__ID_CO__01142BA1">
+      <End Role="CAT_CONTRATO" EntitySet="CAT_CONTRATO" />
+      <End Role="CAT_COSTOS" EntitySet="CAT_COSTOS" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
     <Key>
@@ -147,6 +157,7 @@
     <NavigationProperty Name="CAT_RESIDENCIAL" Relationship="Database1Model.FK__CAT_HABIT__ID_RE__49C3F6B7" FromRole="CAT_HABITACIONAL" ToRole="CAT_RESIDENCIAL" />
     <NavigationProperty Name="CAT_INMUEBLES" Relationship="Database1Model.FK__CAT_INMUE__ID_HA__60A75C0F" FromRole="CAT_HABITACIONAL" ToRole="CAT_INMUEBLES" />
     <NavigationProperty Name="CAT_INMUEBLE" Relationship="Database1Model.FK__CAT_INMUE__ID_HA__6477ECF3" FromRole="CAT_HABITACIONAL" ToRole="CAT_INMUEBLE" />
+    <NavigationProperty Name="CAT_CONTRATO" Relationship="Database1Model.FK__CAT_CONTR__ID_HA__73BA3083" FromRole="CAT_HABITACIONAL" ToRole="CAT_CONTRATO" />
   </EntityType>
   <Association Name="FK__CAT_HABIT__ID_RE__49C3F6B7">
     <End Type="Database1Model.CAT_RESIDENCIAL" Role="CAT_RESIDENCIAL" Multiplicity="1" />
@@ -207,6 +218,55 @@
       </Principal>
       <Dependent Role="CAT_INMUEBLE">
         <PropertyRef Name="ID_HABITACIONAL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CAT_CONTRATO">
+    <Key>
+      <PropertyRef Name="ID_CONTRATO" />
+    </Key>
+    <Property Name="ID_CONTRATO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_HABITACIONAL" Type="Int32" Nullable="false" />
+    <Property Name="CONTRATO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DOCUMENTOUPLOAD" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="FECHAINICIO" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FECHAFIN" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="CAT_HABITACIONAL" Relationship="Database1Model.FK__CAT_CONTR__ID_HA__73BA3083" FromRole="CAT_CONTRATO" ToRole="CAT_HABITACIONAL" />
+    <NavigationProperty Name="CAT_COSTOS" Relationship="Database1Model.FK__CAT_COSTO__ID_CO__01142BA1" FromRole="CAT_CONTRATO" ToRole="CAT_COSTOS" />
+  </EntityType>
+  <EntityType Name="CAT_COSTOS">
+    <Key>
+      <PropertyRef Name="ID_COSTO" />
+    </Key>
+    <Property Name="ID_COSTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_CONTRATO" Type="Int32" Nullable="false" />
+    <Property Name="CONCEPTO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="COSTO" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="CAT_CONTRATO" Relationship="Database1Model.FK__CAT_COSTO__ID_CO__01142BA1" FromRole="CAT_COSTOS" ToRole="CAT_CONTRATO" />
+  </EntityType>
+  <Association Name="FK__CAT_CONTR__ID_HA__73BA3083">
+    <End Type="Database1Model.CAT_HABITACIONAL" Role="CAT_HABITACIONAL" Multiplicity="1" />
+    <End Type="Database1Model.CAT_CONTRATO" Role="CAT_CONTRATO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CAT_HABITACIONAL">
+        <PropertyRef Name="Id_HABITACIONAL" />
+      </Principal>
+      <Dependent Role="CAT_CONTRATO">
+        <PropertyRef Name="ID_HABITACIONAL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CAT_COSTO__ID_CO__01142BA1">
+    <End Type="Database1Model.CAT_CONTRATO" Role="CAT_CONTRATO" Multiplicity="1" />
+    <End Type="Database1Model.CAT_COSTOS" Role="CAT_COSTOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CAT_CONTRATO">
+        <PropertyRef Name="ID_CONTRATO" />
+      </Principal>
+      <Dependent Role="CAT_COSTOS">
+        <PropertyRef Name="ID_CONTRATO" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

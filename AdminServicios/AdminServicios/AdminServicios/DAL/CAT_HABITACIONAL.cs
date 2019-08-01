@@ -19,6 +19,7 @@ namespace AdminServicios.DAL
         {
             this.CAT_INMUEBLES = new HashSet<CAT_INMUEBLES>();
             this.CAT_INMUEBLE = new HashSet<CAT_INMUEBLE>();
+            this.CAT_CONTRATO = new HashSet<CAT_CONTRATO>();
         }
     
         public int Id_HABITACIONAL { get; set; }
@@ -31,5 +32,7 @@ namespace AdminServicios.DAL
         public virtual ICollection<CAT_INMUEBLES> CAT_INMUEBLES { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CAT_INMUEBLE> CAT_INMUEBLE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CAT_CONTRATO> CAT_CONTRATO { get; set; }
     }
 }

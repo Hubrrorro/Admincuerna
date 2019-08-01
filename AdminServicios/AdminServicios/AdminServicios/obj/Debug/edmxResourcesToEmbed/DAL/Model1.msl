@@ -110,5 +110,29 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CAT_CONTRATO">
+      <EntityTypeMapping TypeName="Database1Model.CAT_CONTRATO">
+        <MappingFragment StoreEntitySet="CAT_CONTRATO">
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+          <ScalarProperty Name="FECHAFIN" ColumnName="FECHAFIN" />
+          <ScalarProperty Name="FECHAINICIO" ColumnName="FECHAINICIO" />
+          <ScalarProperty Name="DOCUMENTOUPLOAD" ColumnName="DOCUMENTOUPLOAD" />
+          <ScalarProperty Name="CONTRATO" ColumnName="CONTRATO" />
+          <ScalarProperty Name="ID_HABITACIONAL" ColumnName="ID_HABITACIONAL" />
+          <ScalarProperty Name="ID_CONTRATO" ColumnName="ID_CONTRATO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CAT_COSTOS">
+      <EntityTypeMapping TypeName="Database1Model.CAT_COSTOS">
+        <MappingFragment StoreEntitySet="CAT_COSTOS">
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+          <ScalarProperty Name="COSTO" ColumnName="COSTO" />
+          <ScalarProperty Name="CONCEPTO" ColumnName="CONCEPTO" />
+          <ScalarProperty Name="ID_CONTRATO" ColumnName="ID_CONTRATO" />
+          <ScalarProperty Name="ID_COSTO" ColumnName="ID_COSTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

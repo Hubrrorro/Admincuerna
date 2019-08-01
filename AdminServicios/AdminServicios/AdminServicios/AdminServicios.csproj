@@ -182,6 +182,7 @@
     <Compile Include="Controllers\Catalogos\ResidencialController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Trabajos\TrabajosController.cs" />
     <Compile Include="DAL\AspNetRoles.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -192,6 +193,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\AspNetUsers.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\CAT_CONTRATO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\CAT_COSTOS.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="DAL\CAT_HABITACIONAL.cs">
@@ -329,8 +336,15 @@
     <Content Include="Views\Inmueble\GridInmueble.cshtml" />
     <Content Include="Views\Inmueble\Inmueble.cshtml" />
     <Content Include="Views\Contrato\Index.cshtml" />
+    <Content Include="Views\Contrato\GridContrato.cshtml" />
+    <Content Include="Views\Contrato\Contrato.cshtml" />
+    <Content Include="Views\Trabajos\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controllers\Cobros\" />
+    <Folder Include="Controllers\Notificaciones\" />
+    <Folder Include="Controllers\Pagos\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

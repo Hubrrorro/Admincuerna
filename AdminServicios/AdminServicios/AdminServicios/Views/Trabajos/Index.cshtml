@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Trabajos Realizados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h5>Trabajos Realizados</h5>
+<div class="row">
+    <div class="input-field col s6 m3 l3">
+
+        <select id="ddlResidencial">
+            <option value="0">Todos</option>
+        </select>
+        <label>Conjunto Residencial:</label>
+    </div>
+    <div class="input-field col s6 m3 l3">
+
+        <select id="ddlHabitacional">
+            <option value="0">Todos</option>
+        </select>
+        <label>Conjunto Habitacional:</label>
+    </div>
+    <div class="input-field col s6 m3 l3">
+        <select id="ddlMes">
+            <option value="0">Todos</option>
+            <option value="1">Enero</option>
+            <option value="2">Febrero</option>
+            <option value="3">Marzo</option>
+            <option value="4">Abril</option>
+            <option value="5">Mayo</option>
+            <option value="6">Junio</option>
+            <option value="7">Julio</option>
+            <option value="8">Agosto</option>
+            <option value="9">Septiembre</option>
+            <option value="10">Octubre</option>
+            <option value="11">Noviembre</option>
+            <option value="12">Diciembre</option>
+        </select>
+        <label>Mes:</label>
+    </div>
+    <div class="input-field col s6 m3 l3">
+        <select id="ddlAño">
+            <option value="0">Todos</option>
+            <option value="1">2019</option>
+            <option value="2">2020</option>
+        </select>
+        <label>Año:</label>
+    </div>
+    <div class="col s4 m4 l4">
+                <button id="btnBuscar" class="btn-floating waves-effect waves-light"><i class="material-icons">search</i></button>
+   
+    </div>
+    <div class="col s2 m2 l2">
+        <a class="btn-floating btn-large waves-effect waves-light red" href="@Url.Action("Create")"><i class="material-icons">add</i></a>
+    </div>
+</div>
+@section scripts{
+    <script>
+    $(function () {
+       ExecuteAjax("@Url.Action("ObtenerResidencial")", "POST", FncObtenerResidencial, false);
+        //ExecuteAjax("@Url.Action("ObtenerInmueble")", "POST", FncShowGrid, false);
+    });
+            $('#ddlResidencial').on('change', function () {
+            var model = new Object();
+            model.id_Residencial = $('#ddlResidencial').val();
+            ExecuteAjax2(model, "@Url.Action("ObtenerHabitacional")", "POST", FncObtenerHabitacional, false);
+            });
+        function FncObtenerResidencial(data) {
+            $('#ddlResidencial').html('');
+            $('#ddlResidencial').append($("<option></option>").attr("value", "0").text("Todos"));
+            if (data != null) {
+                $.each(data.datos, function () {
+                    $('#ddlResidencial').append($("<option></option>").attr("value", this.ID_RESIDENCIAL).text(this.RESIDENCIAL));
+                });
+                $('select').formSelect();
+            } else {
+                return;
+            }
+        }
+        function FncObtenerHabitacional(data) {
+            $('#ddlHabitacional').html('');
+            $('#ddlHabitacional').append($("<option></option>").attr("value", "0").text("Todos"));
+            if (data != null) {
+                $.each(data.datos, function () {
+                    $('#ddlHabitacional').append($("<option></option>").attr("value", this.ID_HABITACIONAL).text(this.HABITACIONAL));
+                });
+                $('select').formSelect();
+            } else {
+                return;
+            }
+        }
+
+        </script>
+}

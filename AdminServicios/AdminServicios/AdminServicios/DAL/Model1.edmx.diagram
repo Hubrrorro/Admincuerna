@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4952ae181b07482ab9d3eb1423ad53b8" Name="Diagram1" >
-        <EntityTypeShape EntityType="Database1Model.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Database1Model.C__MigrationHistory" Width="2.5" PointX="4.75" PointY="6.75" />
         <EntityTypeShape EntityType="Database1Model.AspNetRoles" Width="1.5" PointX="0.75" PointY="2.5" />
         <EntityTypeShape EntityType="Database1Model.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="3.625" />
         <EntityTypeShape EntityType="Database1Model.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="1" />
@@ -20,6 +20,10 @@
         <AssociationConnector Association="Database1Model.FK__CAT_INMUE__ID_HA__60A75C0F" />
         <EntityTypeShape EntityType="Database1Model.CAT_INMUEBLE" Width="1.5" PointX="5.25" PointY="10.25" />
         <AssociationConnector Association="Database1Model.FK__CAT_INMUE__ID_HA__6477ECF3" />
+        <EntityTypeShape EntityType="Database1Model.CAT_CONTRATO" Width="1.5" PointX="5.25" PointY="14.375" />
+        <EntityTypeShape EntityType="Database1Model.CAT_COSTOS" Width="1.5" PointX="8.375" PointY="4.75" />
+        <AssociationConnector Association="Database1Model.FK__CAT_CONTR__ID_HA__73BA3083" />
+        <AssociationConnector Association="Database1Model.FK__CAT_COSTO__ID_CO__01142BA1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
